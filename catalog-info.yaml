@@ -1,0 +1,12 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    github.com/project-slug: qmetric/java-technical-assignment
+  description: This is a skeleton project for all QMetric Java developer candidates.
+  name: java-technical-assignment
+spec:
+  lifecycle: production
+  owner: core-2
+  type: misc
