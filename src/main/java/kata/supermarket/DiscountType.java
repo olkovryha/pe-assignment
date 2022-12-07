@@ -1,5 +1,5 @@
 package kata.supermarket;
 
 public enum DiscountType {
-    NONE
+    NONE, TWO_FOR_DOLLAR
 }
