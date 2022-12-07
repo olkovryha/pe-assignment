@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import static java.math.RoundingMode.HALF_UP;
 
 public class ItemByWeight implements Item {
-
+    private DiscountType discountType = DiscountType.NONE;
     private final WeighedProduct product;
     private final BigDecimal weightInKilos;
 
@@ -17,4 +17,5 @@ public class ItemByWeight implements Item {
     public BigDecimal price() {
         return product.pricePerKilo().multiply(weightInKilos).setScale(2, HALF_UP);
     }
+    public DiscountType discountType() { return discountType; }
 }
