@@ -1,0 +1,31 @@
+package kata.supermarket;
+
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TwoForDollarDiscountTest {
+
+    @Test
+    void discountItemsAreGroupedAsExpected() {
+        final List<Item> items = Arrays.asList(new Product("Digestives", new BigDecimal("1.55")).oneOf(),
+                new Product("Milk", new BigDecimal("0.49")).oneOf(),
+                new Product("Milk", new BigDecimal("0.49")).oneOf());
+        final Map<String, List<Item>> groupingItems = new TwoForDollarDiscount(items).getGroupingItems();
+        assertEquals(groupingItems.get("Digestives").size(), 1);
+        assertEquals(groupingItems.get("Milk").size(), 2);
+    }
+
+    @Test
+    void discountIsCalculatedAsExpected() {
+        final List<Item> items = Arrays.asList(new Product("Candies", new BigDecimal("0.63"), DiscountType.TWO_FOR_DOLLAR).oneOf(),
+                new Product("Candies", new BigDecimal("0.63"), DiscountType.TWO_FOR_DOLLAR).oneOf());
+        Discount discount = Discount.link(new TwoForDollarDiscount(items));
+        assertEquals(discount.handle(), BigDecimal.valueOf(0.26));
+    }
+}
