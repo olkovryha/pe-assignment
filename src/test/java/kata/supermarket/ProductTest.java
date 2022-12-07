@@ -9,8 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ProductTest {
 
     @Test
-    void singleItemHasExpectedUnitPriceFromProduct() {
+    void singleItemHasExpectedNameAndUnitPriceFromProduct() {
+        final String name = "Digestives";
         final BigDecimal price = new BigDecimal("2.49");
-        assertEquals(price, new Product(price).oneOf().price());
+        assertEquals(price, new Product(name, price).oneOf().price());
+        assertEquals(name, new Product(name, price).oneOf().name());
     }
 }

@@ -3,19 +3,17 @@ package kata.supermarket;
 import java.math.BigDecimal;
 
 public class WeighedProduct {
+    private final String name;
     private final BigDecimal pricePerKilo;
 
     private DiscountType discountType = DiscountType.NONE;
 
-    public WeighedProduct(final BigDecimal pricePerKilo) {
+    public WeighedProduct(final String name, final BigDecimal pricePerKilo) {
+        this.name = name;
         this.pricePerKilo = pricePerKilo;
     }
 
-    public WeighedProduct(final BigDecimal pricePerKilo, DiscountType discountType) {
-        this.pricePerKilo = pricePerKilo;
-        this.discountType = discountType;
-    }
-
+    public String productName() { return name; }
     BigDecimal pricePerKilo() {
         return pricePerKilo;
     }
