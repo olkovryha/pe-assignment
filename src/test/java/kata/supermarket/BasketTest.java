@@ -28,6 +28,8 @@ class BasketTest {
                 noItems(),
                 aSingleItemPricedPerUnit(),
                 multipleItemsPricedPerUnit(),
+                multipleItemsPricedPerUnitWithTwoForDollarDiscount(),
+                multipleItemsPricedPerUnitWithThreeForTwoDiscount(),
                 aSingleItemPricedByWeight(),
                 multipleItemsPricedByWeight()
         );
@@ -48,6 +50,21 @@ class BasketTest {
                 Arrays.asList(aPackOfDigestives(), aPintOfMilk()));
     }
 
+    private static Arguments multipleItemsPricedPerUnitWithTwoForDollarDiscount() {
+        return Arguments.of("multiple items priced per unit with 'two for dollar' discount", "2.63",
+                Arrays.asList(aPackOfCandiesWithTwoForDollarDiscount(), aPackOfCandiesWithTwoForDollarDiscount(),
+                        aPackOfCandiesWithTwoForDollarDiscount(), aPackOfCandiesWithTwoForDollarDiscount(),
+                        aPackOfCandiesWithTwoForDollarDiscount()));
+    }
+
+    private static Arguments multipleItemsPricedPerUnitWithThreeForTwoDiscount() {
+        return Arguments.of("multiple items priced per unit with 'three for two' discount", "7.25",
+                Arrays.asList(aPackOfBiscuitsWithThreeForTwoDiscount(), aPackOfBiscuitsWithThreeForTwoDiscount(),
+                        aPackOfBiscuitsWithThreeForTwoDiscount(), aPackOfBiscuitsWithThreeForTwoDiscount(),
+                        aPackOfBiscuitsWithThreeForTwoDiscount(), aPackOfBiscuitsWithThreeForTwoDiscount(),
+                        aPackOfBiscuitsWithThreeForTwoDiscount()));
+    }
+
     private static Arguments aSingleItemPricedPerUnit() {
         return Arguments.of("a single item priced per unit", "0.49", Collections.singleton(aPintOfMilk()));
     }
@@ -62,6 +79,13 @@ class BasketTest {
 
     private static Item aPackOfDigestives() {
         return new Product("Digestives", new BigDecimal("1.55")).oneOf();
+    }
+
+    private static Item aPackOfCandiesWithTwoForDollarDiscount() {
+        return new Product("Candies", new BigDecimal("0.63"), DiscountType.TWO_FOR_DOLLAR).oneOf();
+    }
+    private static Item aPackOfBiscuitsWithThreeForTwoDiscount() {
+        return new Product("Biscuits", new BigDecimal("1.45"), DiscountType.THREE_FOR_TWO).oneOf();
     }
 
     private static WeighedProduct aKiloOfAmericanSweets() {
